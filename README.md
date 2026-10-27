@@ -14,7 +14,7 @@ Copy-Item .env.example .env
 
 1. [Discord Developer Portal](https://discord.com/developers/applications) でアプリを作成し、Bot のトークンを取得します。
 2. `.env` の `DISCORD_TOKEN` にトークンを設定します。トークンは他人に共有せず、Git にコミットしないでください。
-3. 開発中は `DISCORD_GUILD_ID` にテスト用サーバーの ID を設定します。Discord の開発者モードを有効にしてサーバーを右クリックすると ID をコピーできます。空欄ならグローバル登録されますが、反映に時間がかかることがあります。
+3. すぐにコマンドを反映したいサーバーは、`.env` の `DISCORD_GUILD_IDS` に ID を設定します。Discord の開発者モードを有効にしてサーバーを右クリックすると ID をコピーできます。複数サーバーはカンマ区切りで指定できます。空欄ならグローバル登録となり、反映に時間がかかることがあります。
 4. Developer Portal の Installation 設定でサーバーへのインストールを有効にし、`bot` と `applications.commands` のスコープを設定して、生成されたリンクから Bot をサーバーに追加します。
 
 ```powershell
@@ -54,7 +54,7 @@ ssh -i ~/.ssh/id_ed25519 -p 2004 exruser@27.83.78.98
 
 本番サーバー上の `/home/exruser/upload` と `/home/exruser/minecraft/servers/thelow-dev1/plugins/WorldEdit/schematics` は事前に作成し、`exruser` に書き込み権限を付けてください。Bot を再起動し `/upload` の `file` にファイルを添付すると、upload に送った後、schematics にコピーします。ファイル名は英数字、`.`、`_`、`-` のみ、拡張子は `.schem` または `.schematic` に限ります。Bot の受信上限は 20 MiB です。同名ファイルは上書きしません。途中で失敗すると upload 側にファイルが残る場合があるため、ログと両方のフォルダーを確認してから再試行してください。
 
-`/schematics` は本番サーバーの schematic 名一覧を取得します。`/download filename:<ファイル名>` はそのファイルを Discord に添付して返します。どちらも実行した本人だけに表示され、`.schem` / `.schematic` のみ、20 MiB 以下が対象です。
+`/schematics` は本番サーバーの schematic 数を表示し、Embed の検索ボタンから名前の一部で絞り込めます。検索結果は実行した本人だけに表示されます。`/download filename:<ファイル名>` はそのファイルを Discord チャンネルに添付して返します。`.schem` / `.schematic` のみ、20 MiB 以下が対象です。
 
 ## 踏み台（Linux）へ Git で配置する
 
