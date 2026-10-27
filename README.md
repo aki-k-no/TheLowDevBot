@@ -54,9 +54,11 @@ ssh -i ~/.ssh/id_ed25519 -p 2004 exruser@27.83.78.98
 
 本番サーバー上の `/home/exruser/upload` と `/home/exruser/minecraft/servers/thelow-dev1/plugins/WorldEdit/schematics` は事前に作成し、`exruser` に書き込み権限を付けてください。Bot を再起動し `/upload` の `file` にファイルを添付すると、upload に送った後、schematics にコピーします。ファイル名は英数字、`.`、`_`、`-` のみ、拡張子は `.schem` または `.schematic` に限ります。Bot の受信上限は 20 MiB です。同名ファイルは上書きしません。途中で失敗すると upload 側にファイルが残る場合があるため、ログと両方のフォルダーを確認してから再試行してください。
 
+`/schematics` は本番サーバーの schematic 名一覧を取得します。`/download filename:<ファイル名>` はそのファイルを Discord に添付して返します。どちらも実行した本人だけに表示され、`.schem` / `.schematic` のみ、20 MiB 以下が対象です。
+
 ## 踏み台（Linux）へ Git で配置する
 
-踏み台で Python 3.10 以降と Git を用意してから、リポジトリを取得します。`requirements.txt` に Bot の Python 依存関係をすべて記載しているため、OS ごとのパッケージを追加する必要はありません。
+踏み台で Python 3.10 以降と Git を用意してから、リポジトリを取得します。`requirements.txt` には Bot の Python 依存関係をすべて記載しています。標準の Python が古い Linux では、先に Python 3.10 以降を導入してください。
 
 ```bash
 git clone <リポジトリURL> discord-transfer-bot
